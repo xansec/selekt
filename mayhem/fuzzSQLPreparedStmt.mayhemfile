@@ -1,0 +1,6 @@
+project: selekt
+target: SQLPreparedStatement
+
+cmds:
+  - cmd: /jazzer_driver --cp=/selekt/fuzz/FuzzSelekt.jar --target_class=SelektSQLPreparedStatementFuzzer
+    dictionary: /sql.dict
