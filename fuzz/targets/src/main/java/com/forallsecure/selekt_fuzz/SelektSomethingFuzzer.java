@@ -36,25 +36,10 @@ import static org.mockito.Mockito.*;
 import com.code_intelligence.jazzer.api.FuzzedDataProvider;
 
 
-public class SelektSQLPreparedStatementFuzzer {
-
-  private static final long POINTER = 42L;
-
-  abstract static class CTLR implements IRandom {
-  }
-
-  static class MyCTLR extends CTLR {
-    @Override
-    public long nextLong(long bound) {
-      return bound + 1;
-    }
-  }
-
+public class SelektSomethingFuzzer {
 
   public static void fuzzerTestOneInput(FuzzedDataProvider data) {
-    IRandom FuzzCTLR = new MyCTLR();
-    SQLiteDatabase mydb = mock(SQLiteDatabase.class);
-    //SQLPreparedStatement(POINTER, data, mydb, FuzzCTLR); doesn't work for some reason idk
+    //????
   }
 
 }

@@ -8,6 +8,6 @@
  * This project uses @Incubating APIs which are subject to change.
  */
 
- rootProject.name = "SelektSQLPreparedStatementFuzzer"
+ rootProject.name = "select_fuzz"
 
  include(":targets")

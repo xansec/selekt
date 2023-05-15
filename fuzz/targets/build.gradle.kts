@@ -16,7 +16,9 @@
  }
 
  dependencies {
-     implementation(files("/selekt/selekt-android/build/libs/selekt-android-0.19.0-SNAPSHOT-sources.jar"))
-     testImplementation("com.code-intelligence:jazzer-api:0.16.1")
-     testImplementation("org.mockito:mockito-core:3.+")
+     //implementation("com.bloomberg:selekt-android:0.19.0")
+     implementation(files("/selekt/selekt-java/build/libs/selekt-java-0.19.0-SNAPSHOT.jar"))
+     implementation(files("/selekt/selekt-android/build/intermediates/runtime_library_classes_jar/debug/classes.jar"))
+     implementation("com.code-intelligence:jazzer-api:0.16.1")
+     implementation("org.mockito:mockito-core:3.+")
  }
