@@ -16,7 +16,7 @@
  }
 
  dependencies {
-     implementation(files("/selekt/selekt-java/build/libs/selekt-java-0.19.0-SNAPSHOT.jar"))
+     implementation(files("/selekt/selekt-java/build/libs/selekt-java-0.20.0-SNAPSHOT.jar"))
      implementation("com.code-intelligence:jazzer-api:0.16.1")
      implementation("org.mockito:mockito-core:3.+")
  }
