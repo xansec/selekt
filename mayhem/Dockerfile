@@ -13,6 +13,7 @@ COPY . /selekt
 WORKDIR /selekt
 RUN yes | sdkmanager --licenses
 WORKDIR /selekt/selekt-sqlite3/src/main/external
+RUN rm -rf ./sqlcipher
 RUN git clone https://github.com/sqlcipher/sqlcipher.git
 WORKDIR /selekt
 RUN gradle jar
