@@ -18,7 +18,7 @@ package com.forallsecure.selekt_fuzz;
 
 import com.bloomberg.selekt.IRandom;
 import com.bloomberg.selekt.SQLPreparedStatement;
-import com.bloomberg.selekt.android.SQLiteDatabase;
+import com.bloomberg.selekt.SQLite;
 import static org.mockito.Mockito.*;
 //import org.mockito.kotlin.any
 //import org.mockito.kotlin.doAnswer
@@ -39,6 +39,7 @@ import com.code_intelligence.jazzer.api.FuzzedDataProvider;
 public class SelektSQLPreparedStatementFuzzer {
 
   private static final long POINTER = 42L;
+  private static final int MAX = 86400;
 
   abstract static class CTLR implements IRandom {
   }
@@ -52,9 +53,13 @@ public class SelektSQLPreparedStatementFuzzer {
 
 
   public static void fuzzerTestOneInput(FuzzedDataProvider data) {
+    String fsql = data.consumeString(MAX);
+    Integer fint = data.consumeInt();
     IRandom FuzzCTLR = new MyCTLR();
-    SQLiteDatabase mydb = mock(SQLiteDatabase.class);
-    //SQLPreparedStatement(POINTER, data, mydb, FuzzCTLR); doesn't work for some reason idk
+    SQLite mydb = mock(SQLite.class);
+    SQLPreparedStatement mystatement = new SQLPreparedStatement(POINTER, fsql, mydb, FuzzCTLR);
+    mystatement.bind(fint, data.consumeRemainingAsBytes());
   }
 
 }
+

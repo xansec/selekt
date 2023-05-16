@@ -1,6 +1,6 @@
 FROM ubuntu AS builder
 
-RUN apt-get update -y && DEBIAN_FRONTEND=noninteractive apt-get install -y zip unzip git cmake gcc g++ ninja-build build-essential gpg openjdk-17-jdk wget kotlin android-sdk sdkmanager libssl-dev tclsh
+RUN apt update -y && DEBIAN_FRONTEND=noninteractive apt install -y zip unzip git cmake gcc g++ ninja-build build-essential gpg openjdk-17-jdk wget kotlin android-sdk sdkmanager libssl-dev tclsh
 RUN wget https://services.gradle.org/distributions/gradle-8.1.1-bin.zip
 RUN mkdir /opt/gradle
 RUN unzip -d /opt/gradle gradle-8.1.1-bin.zip
@@ -15,10 +15,11 @@ RUN yes | sdkmanager --licenses
 WORKDIR /selekt/selekt-sqlite3/src/main/external
 RUN git clone https://github.com/sqlcipher/sqlcipher.git
 WORKDIR /selekt
-RUN gradle assemble jar
+RUN gradle jar
 WORKDIR /selekt/fuzz
-#RUN gradle shadowJar ## this fails
+RUN gradle shadowJar
 
-#FROM cifuzz/jazzer:latest
+FROM cifuzz/jazzer:latest
 
-#COPY --from=builder /selekt/fuzz/build/selekt_fuzz.jar /
+COPY --from=builder /selekt/fuzz/targets/build/libs/targets-all.jar /selekt-fuzz.jar
+COPY ./mayhem/sql.dict /
