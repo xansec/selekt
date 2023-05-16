@@ -18,6 +18,7 @@
 
 import kotlinx.kover.api.KoverTaskExtension
 import org.jetbrains.dokka.gradle.DokkaTask
+import org.jetbrains.dokka.gradle.DokkaTaskPartial
 
 repositories {
     mavenCentral()
@@ -96,9 +97,13 @@ tasks.register<Copy>("copyJniLibs") {
 }
 
 tasks.withType<ProcessResources>().configureEach {
-    mustRunAfter("buildHostSQLite")
+    dependsOn("buildHostSQLite", "copyJniLibs")
 }
 
 tasks.withType<DokkaTask>().configureEach {
-    dependsOn("kaptKotlin")
+    dependsOn("kaptKotlin") // FIXME Remove?
+}
+
+tasks.withType<DokkaTaskPartial>().configureEach {
+    dependsOn("kaptKotlin") // FIXME Remove?
 }
