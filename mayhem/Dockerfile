@@ -20,7 +20,7 @@ RUN gradle jar
 WORKDIR /selekt/fuzz
 RUN gradle shadowJar
 
-#FROM cifuzz/jazzer:latest
+FROM fuzzers/jazzer:0.10.0-openjdk11
 
-#COPY --from=builder /selekt/fuzz/targets/build/libs/targets-all.jar /selekt-fuzz.jar
-#COPY ./mayhem/sql.dict /
+COPY --from=builder /selekt/fuzz/targets/build/libs/targets-all.jar /selekt-fuzz.jar
+COPY ./mayhem/sql.dict /
