@@ -34,7 +34,7 @@ import static org.mockito.Mockito.*;
 //import kotlin.test.assertFalse
 //import kotlin.test.assertTrue
 import com.code_intelligence.jazzer.api.FuzzedDataProvider;
-import com.code_intelligence.jazzer.junit.FuzzTest;
+//import com.code_intelligence.jazzer.junit.FuzzTest;
 
 public class SelektSQLPreparedStatementFuzzer {
 
@@ -51,8 +51,7 @@ public class SelektSQLPreparedStatementFuzzer {
     }
   }
 
-  @FuzzTest
-  void fuzzSQLPreparedStatement(FuzzedDataProvider data) {
+  public static void fuzzerTestOneInput(FuzzedDataProvider data) {
     String fsql = data.consumeString(MAX);
     Integer fint = data.consumeInt();
     IRandom FuzzCTLR = new MyCTLR();

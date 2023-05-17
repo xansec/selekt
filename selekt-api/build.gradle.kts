@@ -31,6 +31,9 @@ plugins {
 java {
     withJavadocJar()
     withSourcesJar()
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(11))
+    }
 }
 
 tasks.withType<KotlinCompile>().configureEach {
@@ -39,6 +42,7 @@ tasks.withType<KotlinCompile>().configureEach {
             "-Xinline-classes",
             "-opt-in=kotlin.RequiresOptIn"
         )
+	jvmTarget = "11"
     }
 }
 
