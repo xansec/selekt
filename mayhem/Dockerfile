@@ -18,9 +18,9 @@ RUN git clone https://github.com/sqlcipher/sqlcipher.git
 WORKDIR /selekt
 RUN gradle jar
 WORKDIR /selekt/fuzz
-RUN gradle shadowJar
+RUN gradle buildFatJar
 
 FROM cifuzz/jazzer:latest
 
-COPY --from=builder /selekt/fuzz/targets/build/libs/targets-all.jar /selekt-fuzz.jar
+COPY --from=builder /selekt/fuzz/targets/build/libs/fat.jar /selekt-fuzz.jar
 COPY ./mayhem/sql.dict /

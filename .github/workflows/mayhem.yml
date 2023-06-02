@@ -63,7 +63,7 @@ jobs:
       fail-fast: false
       matrix:
         mayhemfile:
-          - mayhem/fuzzSQLPreparedStmt.mayhemfile
+          - mayhem/fuzzSimpleSQLQuery.mayhemfile
 
     steps:
       - uses: actions/checkout@v3

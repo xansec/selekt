@@ -7,17 +7,29 @@
  */
 
  plugins {
-     id("com.github.johnrengelman.shadow") version "8.1.1"
-     id("java")
+     kotlin("jvm") version "1.8.21"
+     id("io.ktor.plugin") version "2.3.1"
  }
 
  repositories {
      mavenCentral()
  }
 
+
  dependencies {
      implementation(files("/selekt/selekt-java/build/libs/selekt-java-0.20.0-SNAPSHOT.jar"))
+     implementation(files("/selekt/selekt-api/build/libs/selekt-api-0.20.0-SNAPSHOT.jar"))
      implementation("com.code-intelligence:jazzer-junit:0.16.1")
      implementation("com.code-intelligence:jazzer-api:0.16.1")
-     implementation("org.mockito:mockito-core:5.+")
+     implementation("org.mockito.kotlin:mockito-kotlin:5.+")
+ }
+
+ application {
+    mainClass.set("com.forallsecure.selekt_fuzz.SelektSimpleSQLQueryFuzzer")
+ }
+
+ ktor {
+     fatJar {
+         archiveFileName.set("fat.jar")
+     }
  }
